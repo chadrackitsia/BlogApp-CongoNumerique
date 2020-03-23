@@ -24,19 +24,31 @@ var Blog = mongoose.model("Blog", blogSchema); // Définition du nom de Model et
 // RESTfull ROUTES
 
 app.get("/", function(req, res){
-  res.redirect("index");
+  res.redirect("/blogs");
 })
 
+// INDEX ROUTE - BLOG
 app.get("/blogs", function(req, res){
   res.render("index");
-})
+});
+
+// EDITION ARTICLES ROUTE
+app.get("/blogs/new", function(req, res){
+  res.render("new")
+});
+
+// CREATION (articles) ROUTE
+app.post("/blogs", function(req, res){
+  
+});
 
 
+// 
 app.listen(8080, function(err){
   if(err) {
     console.log(err)
   } else {
     console.log("Server started...")
   }
-})
+});
 
