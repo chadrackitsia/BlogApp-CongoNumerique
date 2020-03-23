@@ -1,27 +1,36 @@
 var express = require("express"),
   mongoose = require("mongoose"),
   bodyParser = require("body-parser"),
+  connectionDB = require("./controllers/connexionDB"), // Module connection DB
+  modelDB = require("./controllers/modelDB"),
   app = express();
   
-// CONFIGURATION DE L'APP
-mongoose.connect('mongodb://localhost/congonumerique_db', { // Définition du path et Connection à la BDD
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+// ***** CONFIGURATION DE L'APP ****** //
+
+app.connect(connectionDB); // Configuration App avec Module connection DB
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: false })); //  Parse / analyse de l'application
+app.use(bodyParser.urlencoded({ extended: true })); //  Parse / analyse de l'application
 
-// Configuration du Model / Mongoose
+
+// Configuration Schema
 var blogSchema = new mongoose.Schema({
-  title : String,
-  image : String,
-  body : String,
-  created : {type : Date, default: Date.now}
+  title : {
+    type :String
+  },
+  image : {
+    type :String
+  },
+  body : {
+    type :String
+  },
+  created : {
+    type : Date, default: Date.now
+  }
 });
 
-var Blog = mongoose.model("Blog", blogSchema); // Définition du nom de Model et du Schema
+var Blog = mongoose.model("Blog", blogSchema); // Définition du nom de Model et Accès au Schema "blogSchema"
 
 
 // RESTfull ROUTES
@@ -46,17 +55,19 @@ app.get("/blogs/new", function(req, res){
   res.render("new")
 });
 
-// CREATION (articles) ROUTE
+// CREATION (articles) ROUTE+
 app.post("/blogs", function(req, res){
-  // cration d'un article de blog
-  Blog.create(req.body.blog, function(err, blogs){
+  // cration d'un article de blog req.body.blog
+  Blog.create(req.body.blog, function(err, blog){
     if(err){
       res.render("new");
     } else {
       //Redirection dans la page d'accueil
       res.redirect("/blogs");
+      console.log("Nouveau article ajouté :");
+      console.log(blog)
     }
-  })
+  });
 
 });
 
