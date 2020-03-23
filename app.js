@@ -46,7 +46,7 @@ app.get("/blogs/new", function(req, res){
 // CREATION (articles) ROUTE
 app.post("/blogs", function(req, res){
   // cration d'un article de blog
-  Blog.create(req.body.blog, function(err, newArticle){
+  Blog.create(req.body.blog, function(err, blogs){
     if(err){
       res.render("new");
     } else {
