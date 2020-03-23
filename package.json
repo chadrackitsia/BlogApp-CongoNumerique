@@ -4,7 +4,7 @@
   "description": "Blog Congo Numerique - Le portail du numerique en RDCongo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
