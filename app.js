@@ -27,23 +27,50 @@ app.get("/", function(req, res){
   res.redirect("/blogs");
 })
 
-// INDEX ROUTE - BLOG
+// INDEX ROUTE - BLOG 
 app.get("/blogs", function(req, res){
-  res.render("index");
+  Blog.find({}, function(err, blogs){ // Recherche des articles dans la base de données
+    if(err){
+      console.log("ERROR!!!")
+    } else {
+      res.render("index", {blogs: blogs});
+    }
+  });
 });
 
-// EDITION ARTICLES ROUTE
+// ROUTE - Ajouter un nouvel article
 app.get("/blogs/new", function(req, res){
   res.render("new")
 });
 
 // CREATION (articles) ROUTE
 app.post("/blogs", function(req, res){
-  
+  // cration d'un article de blog
+  Blog.create(req.body.blog, function(err, newArticle){
+    if(err){
+      res.render("new");
+    } else {
+      //Redirection dans la page d'accueil
+      res.redirect("/blogs");
+    }
+  })
+
 });
 
 
-// 
+// ROUTES APERCU ARTICLE
+app.get("/blogs/:id", function(req, res){
+  res.send("SHOW PAGE");
+});
+
+
+
+
+
+
+
+
+
 app.listen(8080, function(err){
   if(err) {
     console.log(err)
