@@ -2,5 +2,16 @@
 
 <h1>Bienvenue</h1>
 
+<% blogs.forEach(function(blog){%>
+	<div>
+		<h2><%= blog.title %></h2>
+		<img src=" <%= blog.image %> " alt="">
+		<span> <%= blog.created %> </span>
+		<p> <%= blog.body %> </p>
+
+	</div>
+<% }) %>
+
+
 
 <%- include ('partials/footer'); %> <!--  Inclusion du Footer -->
