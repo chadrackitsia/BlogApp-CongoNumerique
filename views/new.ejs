@@ -1,0 +1,13 @@
+<%- include ('partials/header'); %> <!--  Inclusion de Header-->
+
+<div class="ui main text container segment">
+  <div class="ui huge header">Publier un article</div>
+  <form action="/blogs" method="POST">
+    <input type="text" name="blog[title]" placeholder="titre">
+    <input type="text" name="blog[image]" placeholder="URL de l'image">
+    <input type="text" name="blog[body]" placeholder="Inserez les textes de l'article ici">
+    <input type="submit">
+  </form>
+</div>
+
+<%- include ('partials/footer'); %> <!--  Inclusion de Header-->
