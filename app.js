@@ -32,7 +32,6 @@ var blogSchema = new mongoose.Schema({
 
 var Blog = mongoose.model("Blog", blogSchema); // Définition du nom de Model et Accès au Schema "blogSchema"
 
-
 // RESTfull ROUTES
 
 app.get("/", function(req, res){
@@ -72,15 +71,32 @@ app.post("/blogs", function(req, res){
 });
 
 
-// ROUTES APERCU ARTICLE
+// ROUTE APERCU ARTICLE
 app.get("/blogs/:id", function(req, res){
-  res.send("SHOW PAGE");
+  Blog.findById(req.params.id, function(err, foundBlog){
+    if(err){
+      res.redirect("/blogs");
+    } else {
+      res.render("show", {blog: foundBlog});
+    }
+  })
 });
 
+// ROUTE MODIFICATION ARTICLE
+app.get("/blogs/:id/edit", function(req, res){
+  Blog.findById(req.params.id, function(err, foundBlog){
+    if(err){
+      res.redirect("/blogs");
+    } else {
+      res.render("edit", {blog: foundBlog});
+    }
+  })
+})
 
-
-
-
+// ROUTE MISE A JOUR ARTICLE 
+app.put("/blogs/:id", function(req, res){
+  
+})
 
 
 
