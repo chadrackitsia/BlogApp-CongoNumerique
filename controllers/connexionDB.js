@@ -14,7 +14,4 @@ connectionDB = function() {
 });
 };
 
-
-
-
 exports.connectionDB = connectionDB();
