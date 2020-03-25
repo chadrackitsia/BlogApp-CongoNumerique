@@ -11,6 +11,12 @@
       <div class="description">
         <p> <%- blog.body %> </p>
       </div>
+      <!-- FORMULAIRE DE SUPPRESSION -->
+      <a href="/blogs/<%= blog._id %>/edit" class="ui orange basic button">Modifier</a>
+      <!-- FORMULAIRE DE SUPPRESSION -->
+      <form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+        <button class="ui red basic button">Supprimer</button>
+      </form>
     </div>
   </div>
 </div>
