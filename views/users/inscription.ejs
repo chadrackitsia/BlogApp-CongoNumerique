@@ -1,0 +1,41 @@
+
+
+<%- include ('../partials/header'); %> <!--  Inclusion de Header-->
+
+<div class="container main-register-form">
+  <div class="row">
+    <div class="col-md-4">
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="ui main text segment">
+      <h1 class="text-center"> <i class="user plus icon"> </i>Inscription</h1> 
+      <form class="ui form" action="/users/inscription" method="POST">
+        <div class="field">
+          <label>Nom</label>
+          <input type="text" id="name" name="name" placeholder="Entrez votre nom..." value="<%= typeof name != 'undefined' ? name : ''%>" />
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email" id="email" name="email" placeholder="Entrez votre e-mail" value="<%= typeof email != 'undefined' ? email : ''%>"/>
+        </div>
+        <div class="field">
+          <label>Mot de passe</label>
+          <input type="password" name="password" placeholder="Entrez le mot de passe" value="<%= typeof password != 'undefined' ? password : ''%>"/>
+        </div>
+        <div class="field">
+          <label>Confirmez mot de passe</label>
+          <input type="password" name="password2" placeholder="Confirmez le mot de passe" value="<%= typeof password2 != 'undefined' ? password : ''%>"/>
+        </div>
+        <button class="ui button" type="submit">S'inscrire</button>
+        <p>Vous avez un compte? <a href="connection">Connectez-vous</a> </p>
+      </form>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+
+    </div>    
+  </div>
+</div>
