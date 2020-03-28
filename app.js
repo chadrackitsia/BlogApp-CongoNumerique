@@ -4,6 +4,8 @@ var express = require("express"),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override"),
   connectionDB = require("./models/connexionDB"), // Module connection DB
+  flash = require('connect-flash'),
+  session = require('express-session'),
   app = express();
   
 // ***** CONFIGURATION DE L'APP ****** //
@@ -18,24 +20,26 @@ app.use(bodyParser.urlencoded({ extended: true })); //  Parse / analyse de l'app
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 
-
 // Configuration BLOG Schema
-var blogSchema = new mongoose.Schema({
-  title : {
-    type :String
-  },
-  image : {
-    type :String
-  },
-  body : {
-    type :String
-  },
-  created : {
-    type : Date, default: Date.now
-  }
-});
+const blogSchema = new mongoose.Schema({
+    title : {
+      type :String
+    },
+    image : {
+      type :String
+    },
+    body : {
+      type :String
+    },
+    created : {
+      type : Date, default: Date.now
+    }
+  });
+  
+  var Blog = mongoose.model("Blog", blogSchema); // Définition du nom de Model et Accès au Schema "blogSchema"
 
-var Blog = mongoose.model("Blog", blogSchema); // Définition du nom de Model et Accès au Schema "blogSchema"
+  module.exports = Blog;
+
 
 // RESTfull ROUTES
 
@@ -128,12 +132,13 @@ app.delete("/blogs/:id", function(req, res){
 // ************* AUTHENTIFICATION - PASSPORT *************** //
 
 
-app.get('/users/inscription', require('./controllers/routes/users')); // GET ROUTEinscription
+app.get('/users/inscription', require('./controllers/users')); // GET ROUTE inscription
 
-app.get('/users/connection', require('./controllers/routes/users')); // GET ROUTE Connection
+app.get('/users', require('./controllers/users')); // ROUTE Redirection connexion
 
-app.post('/users/inscription', require('./controllers/routes/users')); // POST ROUTE Inscription des utilisateurs
+app.get('/users/connexion', require('./controllers/users')); // GET ROUTE Connection
 
+app.post('/users/inscription', require('./controllers/users')); // POST ROUTE Inscription des utilisateurs
 
 
 
