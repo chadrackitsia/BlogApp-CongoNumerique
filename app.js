@@ -11,14 +11,15 @@ var express = require("express"),
 app.connect(connectionDB); // Configuration App avec Module connection DB
 mongoose.set('useFindAndModify', false); // fonction du pilote MongoDB - Deprecation Warnings
 
-app.set("view engine", "ejs");
+app.set("view engine", "ejs"); // EJS
 app.use(express.static("public"));
+
 app.use(bodyParser.urlencoded({ extended: true })); //  Parse / analyse de l'application
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 
 
-// Configuration Schema
+// Configuration BLOG Schema
 var blogSchema = new mongoose.Schema({
   title : {
     type :String
@@ -122,6 +123,18 @@ app.delete("/blogs/:id", function(req, res){
   })
   // Redirection
 });
+
+
+// ************* AUTHENTIFICATION - PASSPORT *************** //
+
+
+app.get('/users/inscription', require('./controllers/routes/users')); // GET ROUTEinscription
+
+app.get('/users/connection', require('./controllers/routes/users')); // GET ROUTE Connection
+
+app.post('/users/inscription', require('./controllers/routes/users')); // POST ROUTE Inscription des utilisateurs
+
+
 
 
 // ************* APPEL & DEMARRAGE DU SERVEUR PAR LE PORT "8080" *************** //
