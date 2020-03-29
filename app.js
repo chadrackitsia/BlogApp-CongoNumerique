@@ -1,4 +1,4 @@
-var express = require("express"),
+const express = require("express"),
   expressSanitizer = require("express-sanitizer"),
   mongoose = require("mongoose"),
   bodyParser = require("body-parser"),
@@ -6,9 +6,16 @@ var express = require("express"),
   connectionDB = require("./models/connexionDB"), // Module connection DB
   flash = require('connect-flash'),
   session = require('express-session'),
+  passport = require('passport'),
+  { ensureAuthenticated } = require('./controllers/authentification');
+
+
   app = express();
   
-// ***** CONFIGURATION DE L'APP ****** //
+// ************************* CONFIGURATION DE L'APP ************************************ //
+
+// Passport configuration
+require('./controllers/passport')(passport)
 
 app.connect(connectionDB); // Configuration App avec Module connection DB
 mongoose.set('useFindAndModify', false); // fonction du pilote MongoDB - Deprecation Warnings
@@ -16,9 +23,35 @@ mongoose.set('useFindAndModify', false); // fonction du pilote MongoDB - Depreca
 app.set("view engine", "ejs"); // EJS
 app.use(express.static("public"));
 
-app.use(bodyParser.urlencoded({ extended: true })); //  Parse / analyse de l'application
+//  Parse / analyse de l'application
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Expression session - Middleware
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
+
+// Passport middleware (Express-Passport)
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//  Connect Flash - Middleware
+app.use(flash());
+
+// Variables global -  Connect Flash
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+})
+
+
 app.use(expressSanitizer());
-app.use(methodOverride("_method"));
+app.use(methodOverride("_method")); // methodOverride Module Middleware
 
 // Configuration BLOG Schema
 const blogSchema = new mongoose.Schema({
@@ -140,8 +173,18 @@ app.get('/users/connexion', require('./controllers/users')); // GET ROUTE Connec
 
 app.post('/users/inscription', require('./controllers/users')); // POST ROUTE Inscription des utilisateurs
 
+app.post('/users/connexion', require('./controllers/users')); // POST ROUTE Connexion des utilisateurs
+
+// ROUTE DASHBOARD
+app.get('/dashboard', ensureAuthenticated, (req, res) => {
+  res.render('./users/dashboard');
+});
+
+// ROUTE LOUGOUT - DECONNECTION
+app.get('/logout', require('./controllers/users'));
 
 
+ 
 // ************* APPEL & DEMARRAGE DU SERVEUR PAR LE PORT "8080" *************** //
 app.listen(8080, function(err){
   if(err) {
