@@ -1,4 +1,4 @@
-mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // *** Définition du path, du nom de la BDD et Connection à la BDD *** //
 connectionDB = () => {
