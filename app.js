@@ -175,14 +175,16 @@ app.post('/users/inscription', require('./controllers/users')); // POST ROUTE In
 
 app.post('/users/connexion', require('./controllers/users')); // POST ROUTE Connexion des utilisateurs
 
-// ROUTE DASHBOARD
+// ROUTE DASHBOARD - L'utilisateur accède au Tableau de bord qu'une fois authentifier
+
 app.get('/dashboard', ensureAuthenticated, (req, res) => {
-  res.render('./users/dashboard');
+  res.render('./users/dashboard', {
+    greeting : req.user.name
+  });
 });
 
 // ROUTE LOUGOUT - DECONNECTION
 app.get('/logout', require('./controllers/users'));
-
 
  
 // ************* APPEL & DEMARRAGE DU SERVEUR PAR LE PORT "8080" *************** //
