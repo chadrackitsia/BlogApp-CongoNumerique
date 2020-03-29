@@ -85,7 +85,8 @@ router.post('/users/inscription', (req, res) => {
               //Enregistrement du compte utilisateur
               newUser.save()
               .then(user => {
-                res.redirect('users/connexion')
+                req.flash('success_msg', 'Vous êtes maintenant inscrit ou vous pouvez vous connecter !');
+                res.redirect('connexion')
               })
               .catch(err => console.log(err));
           }) )
