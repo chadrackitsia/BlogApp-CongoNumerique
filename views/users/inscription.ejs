@@ -11,7 +11,8 @@
     <div class="col-md-4">
       <div class="ui main text segment">
       <h1 class="text-center"> <i class="user plus icon"> </i>Inscription</h1> 
-      <form class="ui form" action="/users/inscription" method="POST">
+      <%- include ('messages'); %> <!--  Inclusion messages alertes -->
+      <form class="ui form" action="inscription" method="POST">
         <div class="field">
           <label>Nom</label>
           <input type="text" id="name" name="name" placeholder="Entrez votre nom..." value="<%= typeof name != 'undefined' ? name : ''%>" />
@@ -29,7 +30,7 @@
           <input type="password" name="password2" placeholder="Confirmez le mot de passe" value="<%= typeof password2 != 'undefined' ? password : ''%>"/>
         </div>
         <button class="ui button" type="submit">S'inscrire</button>
-        <p>Vous avez un compte? <a href="connection">Connectez-vous</a> </p>
+        <p>Vous avez un compte? <a href="connexion">Connectez-vous</a> </p>
       </form>
       </div>
     </div>
