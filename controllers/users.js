@@ -1,7 +1,7 @@
 const express = require('express');
-
 const router = express.Router();
 const bcrypt = require('bcryptjs'); 
+const passport = require('passport');
 
 // User model
 const User = require('../models/Users');
@@ -23,9 +23,9 @@ router.get('/users', (req, res)=> {
 });
 
 
-/***  Route inscription des utilisateurs - POST METHOD
-      
-*****/
+/***  Route inscription des utilisateurs - POST ROUTE
+      Verification de tous les champs, de deux mots de passe saisis sur le formulaire
+      et du nombre des caractères du mot de passe ***/
 router.post('/users/inscription', (req, res) => {
   const { name, email, password, password2} = req.body;
   let errors = [];
@@ -95,5 +95,24 @@ router.post('/users/inscription', (req, res) => {
   }
 
 });
+
+
+// *********************  CONNEXION DES USERS - POST ROUTE  *******************/
+router.post('/users/connexion', (req, res, next) =>  {
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/users/connexion',
+    failureFlash: true,
+  })(req, res, next);
+})
+
+
+// *********************  DECONNECTION UTILISATEUR  *******************/
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'Vous êtes deconnecté');
+  res.redirect('/users/connexion');
+});
+
 
 module.exports = router;
