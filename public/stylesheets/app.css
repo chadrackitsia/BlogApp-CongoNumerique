@@ -1,6 +1,10 @@
 /**************     CUSTOMIZE CSS       **** *********/
-i.icon {
+i.CN {
     font-size: 2rem;
+}
+
+i.icone {
+    font-size: 1.5rem;
 }
 
 .container.main {
@@ -9,4 +13,23 @@ i.icon {
 
 #delete {
     display: inline;
+}
+
+
+
+/******* FORMULAIRE D"INSCRIPTION ***/
+.main-register-form {
+    padding-top: 10rem;
+}
+
+
+#blogCopyright {
+    padding-top: 1.5;
+    background-color: rgb(29, 28, 28);
+    padding-bottom: 0%;
+}
+
+#blogCopyright #textCopyright{
+    text-align: center;
+    color: whitesmoke;
 }
