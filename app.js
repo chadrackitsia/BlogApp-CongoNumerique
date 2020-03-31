@@ -188,7 +188,9 @@ app.get('/logout', require('./controllers/users'));
 
  
 // ************* APPEL & DEMARRAGE DU SERVEUR PAR LE PORT "8080" *************** //
-app.listen(8080, function(err){
+const port = 8000;
+
+app.listen(port, function(err){
   if(err) {
     console.log(err)
   } else {
