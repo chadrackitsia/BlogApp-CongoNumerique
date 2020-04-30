@@ -1,5 +1,5 @@
 ## Congo Numerique is a Blog and Forum
-WEb App : Blog posts, User authentification, Forum tech included the Realtime chat app with websockets using NodeJS, Express and MongoDB
+WEb App : Blog posts, User authentification, Forum tech included the Realtime chat app with websockets using NodeJS, Express, MongoDB and more.
 
 ## Prerequisites (Prérequis)
 Node.js 10.16.3 or later - install from https://nodejs.org/
