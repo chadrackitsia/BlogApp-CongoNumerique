@@ -12,7 +12,7 @@ git clone https://github.com/chadrackitsia/BlogApp-CongoNumerique
 4. Go back to the Terminal (PowerShell) and be sure that you are pointing inside the project folder. To open the application,
 type ‘node app.js’ and press Enter.
 5. The application should be live on the local port 8080
-6. Type http://localhost:3000/ into a browser
+6. Type http://localhost:8080/ into a browser
 
 
 ## Technologies
