@@ -1,11 +1,12 @@
 ## Congo Numerique is a Blog and Forum
-WEb App : Blog posts, User authentification, Forum tech included the Realtime chat app with websockets using NodeJS, Express and MongoDB
+WEb App : Blog posts, User authentification, Dashboard and Forum included the Realtime chat app with websockets using NodeJS, Express, MongoDB and more.
 
 ## Prerequisites (Prérequis)
 Node.js 10.16.3 or later - install from https://nodejs.org/
 
-1. Download the repository
-git clone https://github.com/chadrackitsia/BlogApp-CongoNumerique
+1. Download the repository :
+
+   git clone https://github.com/chadrackitsia/BlogApp-CongoNumerique
 
 2. Open the Terminal (Linux & MacOS) or PowerShell (Windows) and change directory to the project folder.
 3. Type ‘npm install’ in the Terminal (PowerShell) and press Enter. All the dependencies would be installed
@@ -25,6 +26,9 @@ type ‘node app.js’ and press Enter.
 
 The backend and frontend communicate through REST Apis. On the frontend, we make user interface using Semantic and Bootstrap to the
 following routes:
+
+## Contributor
+* Chadrack Itsia (https://github.com/chadrackitsia)
 
 ## License
 Free to use, copy and distribute
