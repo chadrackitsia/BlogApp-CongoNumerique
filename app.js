@@ -9,6 +9,8 @@ const express = require("express"),
   passport = require('passport'),
   { ensureAuthenticated } = require('./controllers/authentification');
 
+  // Require module BLOG Schema
+  const Blog = require("./models/Post");
 
   app = express();
   
@@ -52,26 +54,6 @@ app.use((req, res, next) => {
 
 app.use(expressSanitizer());
 app.use(methodOverride("_method")); // methodOverride Module Middleware
-
-// Configuration BLOG Schema
-const blogSchema = new mongoose.Schema({
-    title : {
-      type :String
-    },
-    image : {
-      type :String
-    },
-    body : {
-      type :String
-    },
-    created : {
-      type : Date, default: Date.now
-    }
-  });
-  
-  var Blog = mongoose.model("Blog", blogSchema); // Définition du nom de Model et Accès au Schema "blogSchema"
-
-  module.exports = Blog;
 
 
 // RESTfull ROUTES
@@ -188,7 +170,7 @@ app.get('/logout', require('./controllers/users'));
 
  
 // ************* APPEL & DEMARRAGE DU SERVEUR PAR LE PORT "8080" *************** //
-const port = 8000;
+const port = 8080;
 
 app.listen(port, function(err){
   if(err) {
