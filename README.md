@@ -4,7 +4,8 @@ WEb App : Blog posts, User authentification, Dashboard and Forum included the Re
 ## Prerequisites (Prérequis)
 Node.js 10.16.3 or later - install from https://nodejs.org/
 
-1. Download the repository
+1. Download the repository :
+
 git clone https://github.com/chadrackitsia/BlogApp-CongoNumerique
 
 2. Open the Terminal (Linux & MacOS) or PowerShell (Windows) and change directory to the project folder.
