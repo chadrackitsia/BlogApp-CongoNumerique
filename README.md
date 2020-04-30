@@ -27,7 +27,7 @@ The backend and frontend communicate through REST Apis. On the frontend, we make
 following routes:
 
 ## Contributor
-*Chadrack Itsia (https://github.com/chadrackitsia)
+* Chadrack Itsia (https://github.com/chadrackitsia)
 
 ## License
 Free to use, copy and distribute
