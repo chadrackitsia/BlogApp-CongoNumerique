@@ -1,4 +1,3 @@
-# Version WEb App - Congo Numerique 
-# Plateforme d'information et forum Tech (www.congonumerique.com)
+## Congo Numerique is a Blog and Forum
+WEb App (Blog posts, User authentification, Forum tech included the Realtime chat app with websockets)
 
-Un média de référence de la tech et de l’innovation congolaise. Le premier portail du numérique en R.D. Congo.
