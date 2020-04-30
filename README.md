@@ -6,7 +6,7 @@ Node.js 10.16.3 or later - install from https://nodejs.org/
 
 1. Download the repository :
 
-git clone https://github.com/chadrackitsia/BlogApp-CongoNumerique
+   git clone https://github.com/chadrackitsia/BlogApp-CongoNumerique
 
 2. Open the Terminal (Linux & MacOS) or PowerShell (Windows) and change directory to the project folder.
 3. Type ‘npm install’ in the Terminal (PowerShell) and press Enter. All the dependencies would be installed
