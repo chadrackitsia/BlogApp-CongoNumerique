@@ -1,3 +1,7 @@
+/****************************************************************************
+ *************************    REQUIRE MODULES  ************************
+ ****************************************************************************/
+
 const express = require("express"),
   expressSanitizer = require("express-sanitizer"),
   mongoose = require("mongoose"),
@@ -7,12 +11,18 @@ const express = require("express"),
   flash = require('connect-flash'),
   session = require('express-session'),
   passport = require('passport'),
-  { ensureAuthenticated } = require('./controllers/authentification');
+  { ensureAuthenticated } = require('./controllers/authentification'),
+  path = require('path'),
+  http = require('http'),
+  socketio = require('socket.io');
+
+  app = express();
+  const server = http.createServer(app); // Création du serveur
+  const io = socketio(server);
 
   // Require module BLOG Schema
   const Blog = require("./models/Post");
 
-  app = express();
   
 // ************************* CONFIGURATION DE L'APP ************************************ //
 
@@ -144,8 +154,9 @@ app.delete("/blogs/:id", function(req, res){
 });
 
 
-// ************* AUTHENTIFICATION - PASSPORT *************** //
-
+/****************************************************************************
+ *************    ROUTES AUTHENTIFICATION - PASSPORT  ***********************
+ ****************************************************************************/
 
 app.get('/users/inscription', require('./controllers/users')); // GET ROUTE inscription
 
@@ -168,11 +179,22 @@ app.get('/dashboard', ensureAuthenticated, (req, res) => {
 // ROUTE LOUGOUT - DECONNECTION
 app.get('/logout', require('./controllers/users'));
 
+
+/****************************************************************************
+ ****************************    ROUTES FORUM  ******************************
+ ****************************************************************************/
+
+ // L'utilisateur peut acceder au forum s'est autentifié au préalable [ ensureAuthenticated ]
+app.get('/forum/connexion', ensureAuthenticated, (req, res)=> {
+  res.render('./forum/connexion')
+});
+
+
  
 // ************* APPEL & DEMARRAGE DU SERVEUR PAR LE PORT "8080" *************** //
 const port = 8080;
 
-app.listen(port, function(err){
+server.listen(port, function(err){
   if(err) {
     console.log(err)
   } else {
