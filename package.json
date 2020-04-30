@@ -17,11 +17,19 @@
   },
   "homepage": "https://github.com/chadrackitsia/BlogApp-CongoNumerique#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
     "express-sanitizer": "^1.0.5",
+    "express-session": "^1.17.0",
     "method-override": "^3.0.0",
-    "mongoose": "^5.9.5"
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.5",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "socket.io": "^2.3.0"
   }
 }
