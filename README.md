@@ -26,5 +26,8 @@ type ‘node app.js’ and press Enter.
 The backend and frontend communicate through REST Apis. On the frontend, we make user interface using Semantic and Bootstrap to the
 following routes:
 
+## Contributor
+*Chadrack Itsia (https://github.com/chadrackitsia)
+
 ## License
 Free to use, copy and distribute
